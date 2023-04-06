@@ -5,6 +5,38 @@ let modeltextarea = document.querySelector(".model-textarea");
 let maincont = document.querySelector(".main-cont");
 let priorityColorAll = document.querySelectorAll(".priorityColor");
 
+const allTicketsArr = [];
+let selectCont = document.querySelectorAll(".filter-btn");
+let selectedColor;
+for (let i = 0; i < selectCont.length; i++) {
+  selectCont[i].addEventListener("click", (e) => {
+    selectedColor = selectCont[i].classList[0];
+    const filteredArr = allTicketsArr.filter((ticket) => {
+      return selectedColor === ticket.ticketColor;
+    });
+
+    let tickets = document.querySelectorAll(".ticket");
+    tickets.forEach((ticket) => {
+      ticket.remove();
+    });
+
+    filteredArr.forEach((ticket) => {
+      createTicket(ticket.ticketColor, ticket.ticketText, ticket.ticketId);
+    });
+  });
+
+  selectCont[i].addEventListener("dblclick", (e) => {
+    let tickets = document.querySelectorAll(".ticket");
+    tickets.forEach((ticket) => {
+      ticket.remove();
+    });
+
+    allTicketsArr.forEach((ticket) => {
+      createTicket(ticket.ticketColor, ticket.ticketText, ticket.ticketId);
+    });
+  });
+}
+
 let addBtnFlag = false;
 let removeBtnFlag = false;
 let lockBtnFlag = true;
@@ -56,25 +88,33 @@ modelbox.addEventListener("keydown", (e) => {
   let key = e.key;
   if (key === "Shift") {
     let modeltextareaValue = modeltextarea.value;
-    createTicket(priorityColor, shortid(), modeltextareaValue);
+    createTicket(priorityColor, modeltextareaValue);
     addBtn.style.backgroundColor = "rgb(42, 63, 84)";
-    modelbox.style.display = "none";
     addBtnFlag = false;
-    modeltextarea.value = "";
+    setModalDefault();
   }
 });
 
-function createTicket(ticketColor, ticketId, ticketText) {
+function createTicket(ticketColor, ticketText, ticketId) {
+  let id = ticketId || shortid();
   let ticket = document.createElement("div");
   ticket.classList.add("ticket");
   ticket.innerHTML = `<div class="ticket">
         <div class="ticket-color ${ticketColor}"></div>
-        <div class="ticket-id">#${ticketId}</div>
+        <div class="ticket-id">#${id}</div>
         <div class="ticket-text">${ticketText}</div>
         <div class="ticket-lock">
             <i class="fas fa-lock"></i>
         </div>
     </div>`;
+
+  if (!ticketId) {
+    allTicketsArr.push({
+      ticketColor,
+      ticketText,
+      ticketId: id,
+    });
+  }
 
   maincont.appendChild(ticket);
   handleRemove(ticket);
@@ -118,4 +158,14 @@ function handleColors(ticket) {
     colCont.classList.remove(currcolor);
     colCont.classList.add(newColor);
   });
+}
+
+function setModalDefault() {
+  modelbox.style.display = "none";
+  modeltextarea.value = "";
+  priorityColor = colors[colors.length - 1];
+  priorityColorAll.forEach((prioElem) => {
+    prioElem.classList.remove("border");
+  });
+  priorityColorAll[priorityColorAll.length - 1].classList.add("border");
 }
