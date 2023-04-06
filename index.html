@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+     
+    <title>Jira Clone</title>
+</head>
+
+<body>
+    <div class="navbar-cont">
+        <!-- colours for filter -->
+        <div class="filter-cont">
+            <div class="lightpink filter-btn"></div>
+            <div class="lightgreen filter-btn"></div>
+            <div class="lightblue filter-btn"></div>
+            <div class="black filter-btn"></div>
+        </div>
+
+        <!-- add remove action btn -->
+        <div class="action-cont">
+            <div class="addbtn">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="removebtn">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- main -->
+    <div class="main-cont">
+
+        <!-- <div class="ticket">
+            <div class="ticket-color lightgreen"></div>
+            <div class="ticket-id">#5654556</div>
+            <div class="ticket-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, sint!</div>
+            <div class="ticket-lock">
+                <i class="fas fa-lock"></i>
+            </div>
+        </div> -->
+
+    </div>
+
+    <!-- model box -->
+    <div class="model-box">
+        <textarea class="model-textarea"></textarea>
+        <div class="priorityColor-cont">
+            <div class="lightpink priorityColor"></div>
+            <div class="lightgreen priorityColor"></div>
+            <div class="lightblue priorityColor"></div>
+            <div class="black priorityColor border"></div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
