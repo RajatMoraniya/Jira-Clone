@@ -5,9 +5,28 @@ let modeltextarea = document.querySelector(".model-textarea");
 let maincont = document.querySelector(".main-cont");
 let priorityColorAll = document.querySelectorAll(".priorityColor");
 
-const allTicketsArr = [];
+
+let addBtnFlag = false;
+let removeBtnFlag = false;
+let lockBtnFlag = true;
+let lockBtnClass = "fa-lock";
+let unlockBtnClass = "fa-unlock";
+
+const colors = ["lightpink", "lightgreen", "lightblue", "black"];
+let priorityColor = colors[colors.length - 1];
+
+
+let allTicketsArr = [];
 let selectCont = document.querySelectorAll(".filter-btn");
 let selectedColor;
+
+if (allTicketsArr.length <= 0) {
+  allTicketsArr = JSON.parse(localStorage.getItem("Jira_DB"));
+  allTicketsArr.forEach((ticket) => {
+    createTicket(ticket.ticketColor, ticket.ticketText, ticket.ticketId);
+  });
+}
+
 for (let i = 0; i < selectCont.length; i++) {
   selectCont[i].addEventListener("click", (e) => {
     selectedColor = selectCont[i].classList[0];
@@ -36,15 +55,6 @@ for (let i = 0; i < selectCont.length; i++) {
     });
   });
 }
-
-let addBtnFlag = false;
-let removeBtnFlag = false;
-let lockBtnFlag = true;
-let lockBtnClass = "fa-lock";
-let unlockBtnClass = "fa-unlock";
-
-const colors = ["lightpink", "lightgreen", "lightblue", "black"];
-let priorityColor = colors[colors.length - 1];
 
 priorityColorAll.forEach((priorityColorElem) => {
   priorityColorElem.addEventListener("click", (e) => {
@@ -76,10 +86,13 @@ removeBtn.addEventListener("click", (e) => {
   }
 });
 
-function handleRemove(ticket) {
+function handleRemove(ticket, id) {
+  let idx = getIndex(id);
   ticket.addEventListener("click", (e) => {
     if (removeBtnFlag) {
       ticket.remove();
+      allTicketsArr.splice(idx, 1);
+      localStorage.setItem("Jira_DB", JSON.stringify(allTicketsArr));
     }
   });
 }
@@ -114,38 +127,45 @@ function createTicket(ticketColor, ticketText, ticketId) {
       ticketText,
       ticketId: id,
     });
+
+    localStorage.setItem("Jira_DB", JSON.stringify(allTicketsArr));
   }
 
   maincont.appendChild(ticket);
-  handleRemove(ticket);
-  handleLockBtn(ticket);
-  handleColors(ticket);
+  handleRemove(ticket, id);
+  handleLockBtn(ticket, id);
+  handleColors(ticket, id);
 }
 
-function handleLockBtn(ticket) {
+function handleLockBtn(ticket, id) {
   let lockBtnCont = ticket.querySelector(".ticket-lock");
   let taskarea = ticket.querySelector(".ticket-text");
+  let lockIco = lockBtnCont.children[0];
 
-  lockBtnCont.addEventListener("click", (e) => {
-    let lockIco = lockBtnCont.children[0];
-    if (lockBtnFlag) {
+  lockIco.addEventListener("click", (e) => {
+    let idx = getIndex(id);
+    if (lockIco.classList.contains(unlockBtnClass)) {
       lockIco.classList.add(lockBtnClass);
       lockIco.classList.remove(unlockBtnClass);
       lockIco.style.color = "black";
       taskarea.contentEditable = false;
     } else {
+      taskarea.contentEditable = true;
+      lockIco.style.color = "green";
       lockIco.classList.add(unlockBtnClass);
       lockIco.classList.remove(lockBtnClass);
-      lockIco.style.color = "green";
-      taskarea.contentEditable = true;
+
     }
     lockBtnFlag = !lockBtnFlag;
+    allTicketsArr[idx].ticketText = taskarea.innerText;
+    localStorage.setItem("Jira_DB", JSON.stringify(allTicketsArr));
   });
 }
 
-function handleColors(ticket) {
+function handleColors(ticket, id) {
   let colCont = ticket.querySelector(".ticket-color");
   colCont.addEventListener("click", (e) => {
+    let idx = getIndex(id);
     let currcolor = colCont.classList[1];
     let currcolorIdx = colors.findIndex((color) => {
       return color === currcolor;
@@ -157,6 +177,9 @@ function handleColors(ticket) {
 
     colCont.classList.remove(currcolor);
     colCont.classList.add(newColor);
+
+    allTicketsArr[idx].ticketColor = newColor;
+    localStorage.setItem("Jira_DB", JSON.stringify(allTicketsArr));
   });
 }
 
@@ -168,4 +191,10 @@ function setModalDefault() {
     prioElem.classList.remove("border");
   });
   priorityColorAll[priorityColorAll.length - 1].classList.add("border");
+}
+
+function getIndex(id) {
+  allTicketsArr.findIndex((ticket) => {
+    return ticket.ticketID === id;
+  });
 }

@@ -8,167 +8,162 @@ body {
 }
 
 .navbar-cont {
-    background-color: lightslategray;
-    height: 4rem;
-    display: flex;
-    display: flex;
-    align-items: center;
-    
+  background-color: lightslategray;
+  height: 4rem;
+  display: flex;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-cont > * {
-    margin-left: 2rem;
-
+  margin-left: 2rem;
 }
 
 /* Filter Color Btns */
 .filter-cont {
-    background-color: rgb(42, 63, 84);
-    height: 2.5rem;
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 10px;
+  background-color: rgb(42, 63, 84);
+  height: 2.5rem;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
 }
 
 .filter-btn {
-    background-color: #06182c;
-    height: 1.7rem;
-    width: 15%;
+  background-color: #06182c;
+  height: 1.7rem;
+  width: 15%;
 }
 
 .lightpink {
-    background-color: lightpink !important;
+  background-color: lightpink !important;
 }
 
 .lightgreen {
-    background-color: lightgreen !important;
+  background-color: lightgreen !important;
 }
 .lightblue {
-    background-color: lightblue !important;
+  background-color: lightblue !important;
 }
 .black {
-    background-color: black !important;
+  background-color: black !important;
 }
 
 .border {
-    border: 2px solid gold;
+  border: 2px solid gold;
 }
 
 /* Action Btns */
 .action-cont {
-    background-color: rgb(42, 63, 84);
-    height: 2.5rem;
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 10px;
+  background-color: rgb(42, 63, 84);
+  height: 2.5rem;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
 }
 
 .action-cont > * {
-    height: 1.5rem;
-    font-size: 1.5rem;
-    color: antiquewhite;
+  height: 1.5rem;
+  font-size: 1.5rem;
+  color: antiquewhite;
 }
 
 .action-cont > * {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 50%;
-    border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
+  border-radius: 10px;
 }
 
 .action-cont > *:hover {
-    background-color: #06182c !important;
+  background-color: #06182c !important;
 }
-
 
 /* Model Box */
 .model-box {
-    display: none;
-    background-color: lightslategray;
-    position: absolute;
-    height: 10rem;
-    width: 15rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);   
+  display: none;
+  background-color: lightslategray;
+  position: absolute;
+  height: 10rem;
+  width: 15rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .model-textarea {
-    background-color: rgb(87, 204, 151);
-    width: 70%;
-    height: 100%;
-    resize: none;
-    outline: none;
-    border: none;
-    padding: 2rem;
+  background-color: rgb(87, 204, 151);
+  width: 70%;
+  height: 100%;
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 2rem;
 }
 
 .priorityColor-cont {
-    background-color: rgb(14, 30, 24);
-    height: 100%;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  background-color: rgb(14, 30, 24);
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .priorityColor-cont > * {
-    width: 70%;
-    height: 15%;
-    background-color: burlywood;
+  width: 70%;
+  height: 15%;
+  background-color: burlywood;
 }
-
 
 /* MAIN BOX */
 .main-cont {
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .ticket {
-    height: 35vh;
-    width: 40vw;    
-    border-radius: 10px;
-    background-color: rgb(255, 255, 0);
+  height: 35vh;
+  width: 250px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 0);
 }
 
-
-
 .ticket-color {
-    height: 10%;
+  height: 10%;
 }
 
 .ticket-id {
-    height: 20%;
-    background-color: #1f753b;
-    display: flex;
-    align-items: center;
-    padding-left: 1rem;
+  height: 20%;
+  background-color: #1f753b;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
 }
 
 .ticket-text {
-    height: 60%;
-    font-size: 0.7rem;
-    overflow: auto;
-    padding: 0.8rem;
-    outline: none;
+  height: 60%;
+  font-size: 0.7rem;
+  overflow: auto;
+  padding: 0.8rem;
+  outline: none;
 }
 
 .ticket-lock {
-    height: 10%;
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 1rem;
+  height: 10%;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem;
 }
+
